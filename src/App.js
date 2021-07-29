@@ -12,22 +12,39 @@ class App extends Component {
     }
   };
 
+  // не работает!
 
   changeMark = (markKey) => {
     this.setState(prevState => ({
       marks: Object.keys(prevState.marks).map(key => {
 
-        if (key === markKey) {
-          return {
+        return {
+          ...prevState.marks,
+          [markKey]: prevState.marks[markKey] + 1,
+        };
 
-          };
-        }
 
-        return [key];
       }),
     }))
   };
 
+
+  //  this.setState(prevState => ({
+  //    marks: Object.keys(prevState.marks).map(key => {
+
+  //      if (key === markKey) {
+  //        return {
+  //          ...prevState.marks,
+  //          [markKey]: prevState.marks[markKey] + 1,
+  //        };
+  //      }
+  //      return prevState.marks;
+  //    }),
+  //  }))
+
+
+  countTotalFeedback = () => { };
+  countPositiveFeedbackPercentage = () => { };
 
 
   render() {
