@@ -12,39 +12,37 @@ class App extends Component {
     }
   };
 
-  // не работает!
-
+  
   changeMark = (markKey) => {
-    this.setState(prevState => ({
-      marks: Object.keys(prevState.marks).map(key => {
-
-        return {
-          ...prevState.marks,
-          [markKey]: prevState.marks[markKey] + 1,
-        };
-
-
-      }),
-    }))
+    const { marks } = this.state;
+  this.setState({marks: {...marks, [markKey]:marks[markKey] + 1}})
   };
 
+ 
+  countTotalFeedback = () => {
+    const { marks } = this.state;
+    let totalFeedback = 0;
+    Object.values(marks).map(value => (
+      totalFeedback += value
+    ))
 
-  //  this.setState(prevState => ({
-  //    marks: Object.keys(prevState.marks).map(key => {
-
-  //      if (key === markKey) {
-  //        return {
-  //          ...prevState.marks,
-  //          [markKey]: prevState.marks[markKey] + 1,
-  //        };
-  //      }
-  //      return prevState.marks;
-  //    }),
-  //  }))
-
-
-  countTotalFeedback = () => { };
-  countPositiveFeedbackPercentage = () => { };
+    return totalFeedback;
+  };
+  
+  countPositiveFeedbackPercentage = () => {
+   
+    const { marks } = this.state;
+    let totalFeedback = 0;
+    let goodFeedbackShare = 0;
+    
+      Object.values(marks).map(value => (
+        totalFeedback += value
+      ))
+      goodFeedbackShare = marks.Good / totalFeedback * 100;
+      let normalizedGoodFeedbackShare = Math.round(goodFeedbackShare);
+      return normalizedGoodFeedbackShare;
+    
+  };
 
 
   render() {
@@ -55,7 +53,7 @@ class App extends Component {
       <>
         <MarksHead />
         <Marks marks={marks} changeMark={this.changeMark} />
-        <Statistics marks={marks} />
+        <Statistics marks={marks} countTotalFeedback={this.countTotalFeedback} countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage} />
       </>
     );
   }

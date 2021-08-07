@@ -1,14 +1,15 @@
 .marksHead {
-   color: rgb(4, 4, 34); 
-   font-size: 36px;
+  color: rgb(4, 4, 34);
+  font-size: 36px;
+  margin-left: 35px;
 }
 
 .marks {
-    background-color: white;
-    color: black;
-    border: 2px solid rgb(4, 4, 34); 
-    border-radius: 4px;
-    margin-left: 20px;
-    font-size: 20px;
-    cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid rgb(4, 4, 34);
+  border-radius: 4px;
+  margin-left: 20px;
+  font-size: 20px;
+  cursor: pointer;
 }
