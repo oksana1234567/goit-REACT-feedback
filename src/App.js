@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Marks from './components/Statistics/Marks'
+// import FeedbackOptions from './components/Statistics/Marks'
 import MarksHead from './components/Statistics/MarksHead';
-import Statistics from './components/Statistics/Statistics';
+// import Statistics from './components/Statistics/Statistics';
+import Sections from './components/Sections/Sections'
 
 class App extends Component {
   state = {
@@ -12,7 +13,7 @@ class App extends Component {
     }
   };
 
-  
+
   changeMark = (markKey) => {
     const { marks } = this.state;
   this.setState({marks: {...marks, [markKey]:marks[markKey] + 1}})
@@ -28,32 +29,30 @@ class App extends Component {
 
     return totalFeedback;
   };
+
   
   countPositiveFeedbackPercentage = () => {
    
     const { marks } = this.state;
-    let totalFeedback = 0;
     let goodFeedbackShare = 0;
-    
-      Object.values(marks).map(value => (
-        totalFeedback += value
-      ))
-      goodFeedbackShare = marks.Good / totalFeedback * 100;
-      let normalizedGoodFeedbackShare = Math.round(goodFeedbackShare);
-      return normalizedGoodFeedbackShare;
+
+    goodFeedbackShare = marks.Good / this.countTotalFeedback() * 100;
+    let normalizedGoodFeedbackShare = Math.round(goodFeedbackShare);
+    return normalizedGoodFeedbackShare;
     
   };
 
 
   render() {
-    const { marks } = this.state;
+   const { marks } = this.state;
 
 
     return (
       <>
         <MarksHead />
-        <Marks marks={marks} changeMark={this.changeMark} />
-        <Statistics marks={marks} countTotalFeedback={this.countTotalFeedback} countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage} />
+        <Sections marks={marks} changeMark={this.changeMark} countTotalFeedback={this.countTotalFeedback} countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage}/>
+        {/* <FeedbackOptions marks={marks} changeMark={this.changeMark} />
+        <Statistics marks={marks} countTotalFeedback={this.countTotalFeedback} countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage} /> */}
       </>
     );
   }
