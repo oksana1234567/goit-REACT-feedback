@@ -3,7 +3,6 @@ import styles from '../Statistics/statistics.module.css'
 
 const Statistics = ({ marks, countTotalFeedback, countPositiveFeedbackPercentage }) => (
     <section>
-        <h2 className={styles.StatisticsHead}>Statistics</h2>
          
         {countTotalFeedback() !== 0 && <div>
          <ul className="StatisticList">
